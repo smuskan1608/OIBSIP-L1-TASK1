@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+    <link rel="stylesheet" href=" 1.css">
+</head>
+
+<body>
+    <div id="main">
+        <div id="input">
+            <p id="display"></p>
+        </div>
+        <div id="btn">
+            <div id="enter" class="airth" onclick="AC()">AC</div>
+            <div id="enter" class="airth" onclick="percent()">%</div>
+            <div id="enter" class="airth" onclick="signchange()">+/-</div>
+            <div id="enter" class="airth" onclick="airthmatic('/')">/</div>
+            <div id="enter" class="num" onclick="fun(9)">9</div>
+            <div id="enter" class="num" onclick="fun(8)">8</div>
+            <div id="enter" class="num" onclick="fun(7)">7</div>
+            <div id="enter" class="airth" onclick="airthmatic('*')">*</div>
+            <div id="enter" class="num" onclick="fun(6)">6</div>
+            <div id="enter" class="num" onclick="fun(5)">5</div>
+            <div id="enter" class="num" onclick="fun(4)">4</div>
+            <div id="enter" class="airth" onclick="airthmatic('-')">-</div>
+            <div id="enter" class="num" onclick="fun(3)">3</div>
+            <div id="enter" class="num" onclick="fun(2)">2</div>
+            <div id="enter" class="num" onclick="fun(1)">1</div>
+            <div id="enter" class="airth" onclick="airthmatic('+')">+</div>
+            <div id="enter0" class="num" onclick="fun(0)">0</div>
+            <div id="enter" class="num" onclick="dot2()">.</div>
+            <div id="enter" class="airth" onclick="ate()">=</div>
+        </div>
+    </div>
+    <script>
+        var operand1=0;
+        var operand2=null;
+        var operator=null;
+        function fun(value){
+            var number=document.getElementsByClassName("num");
+            var display=document.getElementById("display");
+            display.textContent += value;
+        }
+        function AC(){
+            display.textContent="";
+        }
+        function airthmatic(op){
+            var text = display.textContent.trim();
+            operand1=parseFloat(text);
+            operator=op;
+            display.textContent = "";
+        }
+        function ate(){
+            var text = display.textContent.trim();
+            operand2=parseFloat(text);
+            var result=eval(operand1 + ' ' + operator + ' ' + operand2);
+            if(result){
+                display.textContent = result;
+                operand1=result;
+                operand2=null;
+                operator=null;
+            }
+        }
+        function dot2(){
+            var text = display.textContent.trim();
+            if (text.length && !text.includes('.')) {
+                display.textContent = text + '.';
+            }
+        }
+        function signchange(){
+            var text = display.textContent.trim();
+            operand1=parseFloat(text);
+            operand1 = -1 * operand1;
+            display.textContent = operand1;
+        }
+        function percent(){
+            var text = display.textContent.trim();
+            operand1 = parseFloat(text);
+            operand1 = operand1 / 100;
+            display.textContent = operand1;
+        }
+    </script>
+</body>
+</html>
